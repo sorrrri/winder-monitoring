@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+{% block content %}
+{% import 'base.html' as nav %}
+{{nav.active('alarm')}}
+<main class="alarm">
+  {% import "header.html" as forms %}
+  {{forms.title("알람 모니터링")}}
+  <section class="charts">
+    <div class="chart" id="chart"></div>
+  </section>
+  <section class="information">
+    <div class="list">
+      <div class="list-header">
+        <div class="datetime">
+          <div class="date">2021년 10월 5일</div>
+          <div class="time">14시 ~ 15시</div>
+        </div>
+        <div class="total">19</div>
+      </div>
+      <div class="table">
+        <ul class="row title">
+          <li>시간</li>
+          <li>알람코드</li>
+          <li>알람명</li>
+          <li>영상</li>
+        </ul>
+        <div class="rows">
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+          <ul class="row">
+            <li>14:04:32</li>
+            <li>ALARMCD_001</li>
+            <li>ALARM-001</li>
+            <li><span class="ico-video"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="video">
+      <video src="assets/video/sample.mp4" controls></video>
+    </div>
+  </section>
+</main>
+<script>
+  $(function () {
+    var highAverage = 77,
+      lowAverage = 58;
+
+    $("#chart").dxChart({
+      dataSource: dataSource,
+      customizePoint: function () {
+        if (this.value > highAverage) {
+          return { color: "#ff7c7c", hoverStyle: { color: "#ff7c7c" } };
+        } else if (this.value < lowAverage) {
+          return { color: "#8c8cff", hoverStyle: { color: "#8c8cff" } };
+        }
+      },
+      customizeLabel: function () {
+        if (this.value > highAverage) {
+          return {
+            visible: true,
+            backgroundColor: "#ff7c7c",
+            customizeText: function () {
+              return this.valueText + "&#176F";
+            },
+          };
+        }
+      },
+      export: {
+        enabled: true,
+      },
+      valueAxis: {
+        visualRange: {
+          startValue: 40,
+        },
+        maxValueMargin: 0.01,
+        label: {
+          customizeText: function () {
+            return this.valueText + "&#176F";
+          },
+        },
+        constantLines: [
+          {
+            label: {
+              text: "Low Average",
+            },
+            width: 2,
+            value: lowAverage,
+            color: "#8c8cff",
+            dashStyle: "dash",
+          },
+          {
+            label: {
+              text: "High Average",
+            },
+            width: 2,
+            value: highAverage,
+            color: "#ff7c7c",
+            dashStyle: "dash",
+          },
+        ],
+      },
+      series: [
+        {
+          argumentField: "day",
+          valueField: "temperature",
+          type: "bar",
+          color: "#e7d19a",
+        },
+      ],
+      title: {
+        text: "알람 내역",
+        font: {
+          size: 18,
+        }
+      },
+      legend: {
+        visible: false,
+      },
+    });
+  });
+
+
+  var dataSource = [{
+    day: '1',
+    temperature: 57
+  }, {
+    day: '2',
+    temperature: 58
+  }, {
+    day: '3',
+    temperature: 57
+  }, {
+    day: '4',
+    temperature: 59
+  }, {
+    day: '5',
+    temperature: 63
+  }, {
+    day: '6',
+    temperature: 63
+  }, {
+    day: '7',
+    temperature: 63
+  }, {
+    day: '8',
+    temperature: 64
+  }, {
+    day: '9',
+    temperature: 64
+  }, {
+    day: '10',
+    temperature: 64
+  }, {
+    day: '11',
+    temperature: 69
+  }, {
+    day: '12',
+    temperature: 72
+  }, {
+    day: '13',
+    temperature: 75
+  }, {
+    day: '14',
+    temperature: 78
+  }, {
+    day: '15',
+    temperature: 76
+  }, {
+    day: '16',
+    temperature: 70
+  }, {
+    day: '17',
+    temperature: 65
+  }, {
+    day: '18',
+    temperature: 65
+  }, {
+    day: '19',
+    temperature: 68
+  }, {
+    day: '20',
+    temperature: 70
+  }, {
+    day: '21',
+    temperature: 73
+  }, {
+    day: '22',
+    temperature: 73
+  }, {
+    day: '23',
+    temperature: 75
+  }, {
+    day: '24',
+    temperature: 78
+  }, {
+    day: '25',
+    temperature: 76
+  }, {
+    day: '26',
+    temperature: 76
+  }, {
+    day: '27',
+    temperature: 80
+  }, {
+    day: '28',
+    temperature: 76
+  }, {
+    day: '29',
+    temperature: 75
+  }, {
+    day: '30',
+    temperature: 75
+  }, {
+    day: '31',
+    temperature: 74
+  }];
+</script>
+{% endblock %}

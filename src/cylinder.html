@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block content %}
+{% import 'base.html' as nav %}
+{{nav.active('cylinder')}}
+<main class="monitoring sub-motor">
+  {% import "header.html" as forms %}
+  {{forms.title("실린더 모니터링")}}
+  <section class="tabs">
+    <div class="tab">터렛</div>
+    <div class="tab active">와인더</div>
+  </section>
+  <section class="flex-container">
+    <div class="image">
+      <img src="assets/images/cylinder.png" alt="유닛 3D image">
+    </div>
+    <div class="charts">
+      <div class="chart" id="gauge">
+        <span class="tooltip" data-tooltip="Cyd_Tret_TouchRollCydFwBw">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z" />
+          </svg>
+        </span>
+      </div>
+      <div class="chart" id="gauge-02">
+        <span class="tooltip" data-tooltip="Cyd_Tret_ElInsertGuideCydFwBw">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z" />
+          </svg>
+        </span>
+      </div>
+      <div class="chart" id="gauge-03">
+        <span class="tooltip" data-tooltip="Cyd_Tret_Winder2ndInsertCydFwBw">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  $(function () {
+    var gauge = $("#gauge").dxCircularGauge({
+      scale: {
+        startValue: 10,
+        endValue: 40,
+        tickInterval: 5,
+        label: {
+          customizeText: function (arg) {
+            return arg.valueText + " °C";
+          }
+        }
+      },
+      rangeContainer: {
+        ranges: [
+          { startValue: 10, endValue: 20, color: "#0077BE" },
+          { startValue: 20, endValue: 30, color: "#E6E200" },
+          { startValue: 30, endValue: 40, color: "#77DD77" }
+        ]
+      },
+      tooltip: { enabled: true },
+      title: {
+        text: "터치 롤 실린더 전진/후진",
+        font: { size: 18 }
+      },
+      value: dataSource[0].mean,
+      subvalues: [dataSource[0].min, dataSource[0].max]
+    }).dxCircularGauge("instance");
+
+    var gauge = $("#gauge-02").dxCircularGauge({
+      scale: {
+        startValue: 10,
+        endValue: 40,
+        tickInterval: 5,
+        label: {
+          customizeText: function (arg) {
+            return arg.valueText + " °C";
+          }
+        }
+      },
+      rangeContainer: {
+        ranges: [
+          { startValue: 10, endValue: 20, color: "#0077BE" },
+          { startValue: 20, endValue: 30, color: "#E6E200" },
+          { startValue: 30, endValue: 40, color: "#77DD77" }
+        ]
+      },
+      tooltip: { enabled: true },
+      title: {
+        text: "맨드릴 가이드 실린더 전진/후진",
+        font: { size: 18 }
+      },
+      value: dataSource[0].mean,
+      subvalues: [dataSource[0].min, dataSource[0].max]
+    }).dxCircularGauge("instance");
+
+    var gauge = $("#gauge-03").dxCircularGauge({
+      scale: {
+        startValue: 10,
+        endValue: 40,
+        tickInterval: 5,
+        label: {
+          customizeText: function (arg) {
+            return arg.valueText + " °C";
+          }
+        }
+      },
+      rangeContainer: {
+        ranges: [
+          { startValue: 10, endValue: 20, color: "#0077BE" },
+          { startValue: 20, endValue: 30, color: "#E6E200" },
+          { startValue: 30, endValue: 40, color: "#77DD77" }
+        ]
+      },
+      tooltip: { enabled: true },
+      title: {
+        text: "와인더 2차 권심 전진 실린더 전진/후진",
+        font: { size: 18 }
+      },
+      value: dataSource[0].mean,
+      subvalues: [dataSource[0].min, dataSource[0].max]
+    }).dxCircularGauge("instance");
+
+  });
+
+  var dataSource = [{
+    name: 'Summer',
+    mean: 35,
+    min: 28,
+    max: 38
+  }, {
+    name: 'Autumn',
+    mean: 24,
+    min: 20,
+    max: 32
+  }, {
+    name: 'Winter',
+    mean: 18,
+    min: 16,
+    max: 23
+  }, {
+    name: 'Spring',
+    mean: 27,
+    min: 18,
+    max: 31
+  }];
+</script>
+{% endblock %}

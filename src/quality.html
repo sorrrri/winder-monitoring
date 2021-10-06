@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %}
+{% import 'base.html' as nav %}
+{{nav.active('quality')}}
+<main class="monitoring quality">
+  {% import "header.html" as forms %}
+  {{forms.title("품질 모니터링")}}
+  <section class="flex-container">
+    <div class="image">
+      <img src="assets/images/quality.png" alt="품질 (전극 / 분리막 사행) 모니터링">
+    </div>
+    <div class="charts">
+      <div class="chart" id="chart"></div>
+      <div class="chart" id="chart-02"></div>
+      <div class="chart" id="chart-03"></div>
+      <div class="chart" id="chart-04"></div>
+    </div>
+  </section>
+</main>
+<script>
+  $(function () {
+    $("#chart").dxChart({
+      dataSource: dataSource,
+      commonSeriesSettings: {
+        argumentField: "state",
+        type: "spline",
+        hoverMode: "includePoints",
+        point: {
+          hoverMode: "allArgumentPoints"
+        }
+      },
+      series: [
+        { valueField: "year2004", name: "2004" },
+        { valueField: "year2001", name: "2001" },
+        { valueField: "year1998", name: "1998" }
+      ],
+      stickyHovering: false,
+      title: {
+        text: "상부전극 EPC#1",
+        font: { size: 18 }
+      },
+      "export": {
+        enabled: true
+      },
+      legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center",
+        hoverMode: "excludePoints"
+      }
+    });
+
+    $("#chart-02").dxChart({
+      dataSource: dataSource,
+      commonSeriesSettings: {
+        argumentField: "state",
+        type: "spline",
+        hoverMode: "includePoints",
+        point: {
+          hoverMode: "allArgumentPoints"
+        }
+      },
+      series: [
+        { valueField: "year2004", name: "2004" },
+        { valueField: "year2001", name: "2001" },
+        { valueField: "year1998", name: "1998" }
+      ],
+      stickyHovering: false,
+      title: {
+        text: "상부전극 EPC#2",
+        font: { size: 18 }
+      },
+      "export": {
+        enabled: true
+      },
+      legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center",
+        hoverMode: "excludePoints"
+      }
+    });
+
+    $("#chart-03").dxChart({
+      dataSource: dataSource,
+      commonSeriesSettings: {
+        argumentField: "state",
+        type: "spline",
+        hoverMode: "includePoints",
+        point: {
+          hoverMode: "allArgumentPoints"
+        }
+      },
+      series: [
+        { valueField: "year2004", name: "2004" },
+        { valueField: "year2001", name: "2001" },
+        { valueField: "year1998", name: "1998" }
+      ],
+      stickyHovering: false,
+      title: {
+        text: "하부전극 EPC#1",
+        font: { size: 18 }
+      },
+      "export": {
+        enabled: true
+      },
+      legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center",
+        hoverMode: "excludePoints"
+      }
+    });
+
+    $("#chart-04").dxChart({
+      dataSource: dataSource,
+      commonSeriesSettings: {
+        argumentField: "state",
+        type: "spline",
+        hoverMode: "includePoints",
+        point: {
+          hoverMode: "allArgumentPoints"
+        }
+      },
+      series: [
+        { valueField: "year2004", name: "2004" },
+        { valueField: "year2001", name: "2001" },
+        { valueField: "year1998", name: "1998" }
+      ],
+      stickyHovering: false,
+      title: {
+        text: "하부전극 EPC#2",
+        font: { size: 18 }
+      },
+      "export": {
+        enabled: true
+      },
+      legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center",
+        hoverMode: "excludePoints"
+      }
+    });
+  });
+
+
+  var dataSource = [{
+    state: "Illinois",
+    year1998: 423.721,
+    year2001: 476.851,
+    year2004: 528.904
+  }, {
+    state: "Indiana",
+    year1998: 178.719,
+    year2001: 195.769,
+    year2004: 227.271
+  }, {
+    state: "Michigan",
+    year1998: 308.845,
+    year2001: 335.793,
+    year2004: 372.576
+  }, {
+    state: "Ohio",
+    year1998: 348.555,
+    year2001: 374.771,
+    year2004: 418.258
+  }, {
+    state: "Wisconsin",
+    year1998: 160.274,
+    year2001: 182.373,
+    year2004: 211.727
+  }];
+
+</script>
+{% endblock %}
