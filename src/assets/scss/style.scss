@@ -32,9 +32,9 @@ main {
   flex-direction: column;
   padding: 2rem;
   background-color: #e3e6e9;
+  gap: 1rem;
 
   header {
-    margin-bottom: 1rem;
   }
 
   .chart {
@@ -198,7 +198,6 @@ main {
 }
 
 .alarm {
-  gap: 1rem;
 
   .charts {
     flex: 1 1 auto;
@@ -288,7 +287,6 @@ main {
     align-items: center;
     justify-content: center;
     font-size: 1.15rem;
-    margin-bottom: 1rem;
 
     .tab {
       user-select: none;
@@ -311,7 +309,7 @@ main {
   }
 
   .image {
-    flex: 0 0 50%;
+    flex: 0 0 40%;
     max-width: 800px;
     border: 1px solid gainsboro;
     background-color: white;
