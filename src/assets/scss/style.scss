@@ -12,7 +12,7 @@ aside {
   nav {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
 
     a {
       color: white;
@@ -158,25 +158,36 @@ main {
 }
 
 .dashboard {
-  
   .streaming {
     display: flex;
     width: 50%;
-    max-width: 400px;
+    max-width: 500px;
     gap: 1rem;
     margin: 0 auto;
     user-select: none;
 
     li {
       flex: 1 1 33.333%;
-      padding: 1rem;
+      padding: 1.25rem 0 0.75rem;
       border-radius: 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .5rem;
-      background-color: rgba(255,255,255,.5);
+      gap: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
       cursor: pointer;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 5px;
+        border-radius: 0.5rem 0.5rem 0 0;
+      }
 
       .title {
         font-size: 1.15rem;
@@ -194,8 +205,8 @@ main {
         position: relative;
 
         &::before {
-          content: '';
-          opacity: .5;
+          content: "";
+          opacity: 0.5;
           position: absolute;
           width: 120%;
           height: 120%;
@@ -210,36 +221,51 @@ main {
     }
 
     .normal {
-      background-color: seagreen;
-
       &::before {
         background-color: seagreen;
       }
+      .status {
+        background-color: seagreen;
 
-      &::after {
-        content: '정상';
+        &::before {
+          background-color: seagreen;
+        }
+
+        &::after {
+          content: "정상";
+        }
       }
     }
     .abnormal {
-      background-color: #da932c;
-
       &::before {
-        background-color: #da932c;
+        background-color: orange;
       }
+      .status {
+        background-color: orange;
 
-      &::after {
-        content: '이상';
+        &::before {
+          background-color: orange;
+        }
+
+        &::after {
+          content: "이상";
+        }
       }
     }
     .fault {
-      background-color: #d65b4a;
-
       &::before {
-        background-color: #d65b4a;
+        background-color: tomato;
       }
+      .status {
+        background-color: tomato;
 
-      &::after {
-        content: '이상';
+        &::before {
+          background-color: tomato;
+        }
+
+        &::after {
+          content: "이상";
+        }
       }
     }
   }
@@ -253,7 +279,6 @@ main {
 }
 
 .alarm {
-
   .charts {
     flex: 1 1 auto;
     height: 600px;
