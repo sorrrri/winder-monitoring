@@ -158,8 +158,8 @@ main {
 }
 
 .dashboard {
+  
   .streaming {
-    color: white;
     display: flex;
     width: 50%;
     max-width: 400px;
@@ -174,26 +174,81 @@ main {
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: .5rem;
+      background-color: rgba(255,255,255,.5);
+      cursor: pointer;
 
       .title {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
       }
 
       .status {
-        opacity: 0.8;
-        font-size: 18px;
+        font-size: 13px;
+        color: white;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &::before {
+          content: '';
+          opacity: .5;
+          position: absolute;
+          width: 120%;
+          height: 120%;
+          border-radius: 50%;
+          filter: blur(3px);
+        }
+
+        &::after {
+          z-index: 3;
+        }
       }
     }
 
-    .bg-green {
-      background-color: #66b92e;
+    .normal {
+      background-color: seagreen;
+
+      &::before {
+        background-color: seagreen;
+      }
+
+      &::after {
+        content: '정상';
+      }
     }
-    .bg-yellow {
+    .abnormal {
       background-color: #da932c;
+
+      &::before {
+        background-color: #da932c;
+      }
+
+      &::after {
+        content: '이상';
+      }
     }
-    .bg-red {
+    .fault {
       background-color: #d65b4a;
+
+      &::before {
+        background-color: #d65b4a;
+      }
+
+      &::after {
+        content: '이상';
+      }
     }
+  }
+
+  .image {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
