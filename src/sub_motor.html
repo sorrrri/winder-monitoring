@@ -7,7 +7,29 @@
   {{forms.title("서브모터 모니터링")}}
   <section class="flex-container">
     <div class="image">
+      <ul class="streaming">
+        <li class="fault">
+          <div class="status"></div>
+          <div class="title">터렛회전</div>
+        </li>
+        <li class="normal">
+          <div class="status"></div>
+          <div class="title">권심회전#1</div>
+        </li>
+        <li class="abnormal">
+          <div class="status"></div>
+          <div class="title">권심회전#2</div>
+        </li>
+        <li class="fault">
+          <div class="status"></div>
+          <div class="title">권심회전#3</div>
+        </li>
+      </ul>
       <img src="assets/images/sub_motor.png" alt="유닛 3D image">
+      <span class="text-01" data-status="fault">터렛회전</span>
+      <span class="text-02" data-status="normal">권심회전#1</span>
+      <span class="text-03" data-status="abnormal">권심회전#2</span>
+      <span class="text-04" data-status="fault">권심회전#3</span>
     </div>
     <div class="charts">
       <div class="chart" id="chart">

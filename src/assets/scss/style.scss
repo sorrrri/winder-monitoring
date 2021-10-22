@@ -157,26 +157,113 @@ main {
   }
 }
 
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    &[data-status="normal"] {
+      background-color: seagreen;
+    }
+
+    &[data-status="abnormal"] {
+      background-color: orange !important;
+    }
+
+    &[data-status="fault"] {
+      background-color: tomato !important;
+    }
+  }
+}
+
+.streaming {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+  user-select: none;
+
+  li {
+    flex: 1 1 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+
+    .title {
+    }
+
+    .status {
+      border-radius: 50%;
+      width: 0.75rem;
+      height: 0.75rem;
+      position: relative;
+
+      &::before {
+        content: "";
+        opacity: 0.5;
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        border-radius: 50%;
+        filter: blur(3px);
+      }
+    }
+
+    &.normal {
+      &::before {
+        background-color: seagreen;
+      }
+      .status {
+        background-color: seagreen;
+
+        &::before {
+          background-color: seagreen;
+        }
+      }
+    }
+
+    &.abnormal {
+      &::before {
+        background-color: orange;
+      }
+      .status {
+        background-color: orange;
+
+        &::before {
+          background-color: orange;
+        }
+      }
+    }
+
+    &.fault {
+      &::before {
+        background-color: tomato;
+      }
+      .status {
+        background-color: tomato;
+
+        &::before {
+          background-color: tomato;
+        }
+      }
+    }
+  }
+}
+
 .dashboard {
   .streaming {
-    display: flex;
     width: 50%;
     max-width: 500px;
     gap: 1rem;
-    margin: 0 auto;
-    user-select: none;
 
     li {
-      flex: 1 1 33.333%;
+      flex-basis: 33.333%;
       padding: 1.25rem 0 0.75rem;
-      border-radius: 0.5rem;
-      display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
       background-color: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      position: relative;
 
       &::before {
         content: "";
@@ -196,75 +283,38 @@ main {
       .status {
         font-size: 13px;
         color: white;
-        border-radius: 50%;
         width: 2.5rem;
         height: 2.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
-
-        &::before {
-          content: "";
-          opacity: 0.5;
-          position: absolute;
-          width: 120%;
-          height: 120%;
-          border-radius: 50%;
-          filter: blur(3px);
-        }
 
         &::after {
           z-index: 3;
         }
       }
-    }
 
-    .normal {
-      &::before {
-        background-color: seagreen;
-      }
-      .status {
-        background-color: seagreen;
-
-        &::before {
-          background-color: seagreen;
-        }
-
-        &::after {
-          content: "정상";
+      &.normal {
+        .status {
+          &::after {
+            content: "정상";
+          }
         }
       }
-    }
-    .abnormal {
-      &::before {
-        background-color: orange;
-      }
-      .status {
-        background-color: orange;
 
-        &::before {
-          background-color: orange;
-        }
-
-        &::after {
-          content: "이상";
+      &.abnormal {
+        .status {
+          &::after {
+            content: "이상";
+          }
         }
       }
-    }
-    .fault {
-      &::before {
-        background-color: tomato;
-      }
-      .status {
-        background-color: tomato;
 
-        &::before {
-          background-color: tomato;
-        }
-
-        &::after {
-          content: "이상";
+      &.fault {
+        .status {
+          &::after {
+            content: "이상";
+          }
         }
       }
     }
@@ -272,9 +322,6 @@ main {
 
   .image {
     flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
@@ -362,6 +409,20 @@ main {
     flex: 0 0 auto;
   }
 
+  .streaming {
+    position: absolute;
+    top: 1.5rem;
+    background-color: #e6edf7;
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+
+    .fault {
+      .status {
+        animation: blink 2s infinite alternate
+      }
+    }
+  }
+
   .tabs {
     gap: 0.5rem;
     align-items: center;
@@ -389,25 +450,24 @@ main {
   }
 
   .image {
-    flex: 0 0 40%;
-    max-width: 800px;
+    flex: 0 0 auto;
     border: 1px solid gainsboro;
     background-color: white;
     border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     padding: 2rem;
+    position: relative;
 
     img {
-      max-width: 100%;
+      width: 600px;
     }
 
-    ul {
-      display: flex;
-      flex li {
-        flex: 1 1 50%;
-      }
+    span {
+      position: absolute;
+      background-color: #2c303b;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
     }
   }
 
@@ -420,5 +480,108 @@ main {
 
   .chart {
     flex: 1 1 25%;
+  }
+}
+
+.sub-motor {
+  .text-01 {
+    bottom: 15%;
+    left: 40%;
+  }
+
+  .text-02 {
+    top: 35%;
+    left: 49%;
+  }
+
+  .text-03 {
+    top: 35%;
+    left: 10%;
+  }
+
+  .text-04 {
+    top: 42%;
+    left: 17%;
+  }
+}
+
+.cylinder {
+  .image {
+    img {
+      width: 800px;
+    }
+  }
+
+  .text-01 {
+    top: 46%;
+    left: 5%;
+  }
+
+  .text-02 {
+    top: 56%;
+    left: 5%;
+  }
+
+  .text-03 {
+    top: 26%;
+    right: 13%;
+  }
+}
+
+.quality {
+  .image {
+    img {
+      width: 800px;
+    }
+  }
+
+  .text-01 {
+    top: 39%;
+    left: 22%;
+  }
+
+  .text-02 {
+    top: 42%;
+    right: 16%;
+  }
+
+  .text-03 {
+    top: 55%;
+    left: 22%;
+  }
+
+  .text-04 {
+    top: 53%;
+    left: 41%;
+  }
+}
+
+
+@keyframes fade {
+  40% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 0.1;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 1;
   }
 }

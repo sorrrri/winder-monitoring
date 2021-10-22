@@ -7,7 +7,29 @@
   {{forms.title("품질 모니터링")}}
   <section class="flex-container">
     <div class="image">
+      <ul class="streaming">
+        <li class="normal">
+          <div class="status"></div>
+          <div class="title">상부전극#1</div>
+        </li>
+        <li class="normal">
+          <div class="status"></div>
+          <div class="title">상부전극#2</div>
+        </li>
+        <li class="fault">
+          <div class="status"></div>
+          <div class="title">하부전극#1</div>
+        </li>
+        <li class="normal">
+          <div class="status"></div>
+          <div class="title">하부전극#2</div>
+        </li>
+      </ul>
       <img src="assets/images/quality.png" alt="품질 (전극 / 분리막 사행) 모니터링">
+      <span class="text-01" data-status="normal">상부전극#1</span>
+      <span class="text-02" data-status="normal">상부전극#2</span>
+      <span class="text-03" data-status="fault">하부전극#1</span>
+      <span class="text-04" data-status="normal">하부전극#2</span>
     </div>
     <div class="charts">
       <div class="chart" id="chart"></div>
