@@ -4,9 +4,9 @@
 {{nav.active('home')}}
 <main class="dashboard">
   {% import "header.html" as forms %}
-  {{forms.title("Temporary Main")}}
+  {{forms.title("설비 모니터링")}}
   <ul class="streaming">
-    <li class="normal">
+    <li class="fault">
       <div class="status"></div>
       <div class="title">모터</div>
     </li>
@@ -14,17 +14,27 @@
       <div class="status"></div>
       <div class="title">실린더</div>
     </li>
-    <li class="fault">
+    <li class="normal">
       <div class="status"></div>
       <div class="title">품질</div>
     </li>
-    <li class="fault">
+    <li class="normal">
       <div class="status"></div>
       <div class="title">센서</div>
     </li>
   </ul>
-  <div class="image">
-    <img src="assets/images/main.png" alt="">
+  <div class="image-container">
+    <div class="image">
+      <img src="assets/images/main.png" alt="">
+      <span class="text-01" data-status="fault">터렛회전</span>
+      <span class="text-02" data-status="normal">권심회전#1</span>
+      <span class="text-03" data-status="abnormal">권심회전#2</span>
+      <span class="text-04" data-status="fault">권심회전#3</span>
+      <span class="text-05" data-status="normal">맨드릴가이드실린더</span>
+      <span class="text-06" data-status="normal">터치롤실린더</span>
+      <span class="text-07" data-status="abnormal">2차권심전진실린더</span>
+      <span class="text-08" data-status="normal">센서</span>
+    </div>
   </div>
 </main>
 <div class="modal-container">
