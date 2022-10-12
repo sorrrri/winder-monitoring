@@ -1,10 +1,41 @@
-{% extends "base.html" %}
-{% block content %}
-{% import 'base.html' as nav %}
-{{nav.active('subMotor')}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winder Monitoring</title>
+  <link rel="stylesheet" href="assets/main.css">
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+  <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/15.2.5/js/dx.chartjs.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    
+    
+
+
+    <aside>
+      <div class="logo brand-lg"></div>
+      <nav>
+        <a class="" href="index.html">설비 모니터링</a>
+        <a class="" href="alarm.html">알람 모니터링</a>
+        <a class=" active " href="sub_motor.html">서브모터 부하율 모니터링</a>
+        <a class="" href="cylinder.html">실린더 동작시간 모니터링</a>
+        <a class="" href="quality.html">품질(사행) 모니터링</a>
+      </nav>
+    </aside>
+    
 <main class="monitoring sub-motor">
-  {% import "header.html" as forms %}
-  {{forms.title("서브모터 모니터링")}}
+  
+  
+<header>
+    <h2 class="title">서브모터 모니터링</h2>
+</header>
+
   <section class="flex-container">
     <div class="image-container">
       <ul class="streaming">
@@ -467,4 +498,8 @@
     temperature: 74
   }];
 </script>
-{% endblock %}
+
+  </div>
+</body>
+
+</html>
